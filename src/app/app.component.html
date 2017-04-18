@@ -1,3 +1,29 @@
+<h1>Hello {{displayName}}</h1>
+<img *ngIf="photoUrl" src="{{photoUrl}}" alt="" >
+<button (click)="login()">Login</button>
+<button (click)="logout()">Logout</button>
+
 <h1>
-  {{title}}
+  Cucine
 </h1>
+<button (click)="add()">Add</button>
+<button (click)="update()">Update</button>
+<button (click)="remove()">Remove</button>
+<div *ngIf="(exists | async)?.$value ">Esiste</div>
+<ul>
+  <li *ngFor="let c of cuisines | async">{{c.$key + '- '+c.$value}}</li>
+</ul>
+<h1>
+  Ristoranti
+</h1>
+<ul>
+  <li *ngFor="let r of restaurants | async">{{r.name}} - {{(r.cuisineType | async)?.$value}}
+    <ul>
+      <li *ngFor="let f of r.featureTypes">
+        {{(f | async)?.$value}}
+        - {{r.rating}}
+      </li>
+    </ul>
+
+  </li>
+</ul>
